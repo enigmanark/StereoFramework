@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ProjectRetrosic.GameApp.ECS;
+using StereoFramework.GameApp.ECS;
 using System.Diagnostics;
 
 namespace GameApp

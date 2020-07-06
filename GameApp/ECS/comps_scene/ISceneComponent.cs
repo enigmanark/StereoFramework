@@ -1,13 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ProjectRetrosic.GameApp.ECS.comps_scene
+
+namespace StereoFramework.GameApp.ECS.comps_scene
 {
-	interface ISceneComponent
+	public interface ISceneComponent
 	{
 		void process(List<Entity> entities);
 	}

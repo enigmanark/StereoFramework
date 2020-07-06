@@ -1,13 +1,8 @@
 ﻿using GameApp;
-using ProjectRetrosic.GameApp.ECS.comps_e;
-using System;
-using System.CodeDom;
+using StereoFramework.GameApp.ECS.comps_e;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ProjectRetrosic.GameApp.ECS
+namespace StereoFramework.GameApp.ECS
 {
 	public class Entity
 	{
@@ -16,6 +11,11 @@ namespace ProjectRetrosic.GameApp.ECS
 		public Entity()
 		{
 			
+		}
+
+		public List<IComponent> GetComponents()
+		{
+			return this.components;
 		}
 
 		public IComponent GetComponent<T>()

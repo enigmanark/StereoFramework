@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectRetrosic.GameApp
+namespace StereoFramework.GameApp
 {
 	public static class ResourceManager
 	{

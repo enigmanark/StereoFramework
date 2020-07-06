@@ -48,6 +48,7 @@
     <Compile Include="GameApp\ECS\comps_e\IComponent.cs" />
     <Compile Include="GameApp\ECS\comps_e\IDrawable.cs" />
     <Compile Include="GameApp\ECS\comps_e\IProcessable.cs" />
+    <Compile Include="GameApp\ECS\comps_scene\comps\SceneCompSpriteRenderer.cs" />
     <Compile Include="GameApp\ECS\comps_scene\ISceneComponent.cs" />
     <Compile Include="GameApp\ECS\comps_scene\ISceneComponentRenderer.cs" />
     <Compile Include="GameApp\ECS\Entity.cs" />

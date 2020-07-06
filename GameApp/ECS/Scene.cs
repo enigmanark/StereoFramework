@@ -1,8 +1,9 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using ProjectRetrosic.GameApp.ECS.comps_scene;
+﻿using GameApp;
+using Microsoft.Xna.Framework.Graphics;
+using StereoFramework.GameApp.ECS.comps_scene;
 using System.Collections.Generic;
 
-namespace ProjectRetrosic.GameApp.ECS
+namespace StereoFramework.GameApp.ECS
 {
 	public class Scene
 	{
@@ -21,11 +22,11 @@ namespace ProjectRetrosic.GameApp.ECS
 			this.entities.Add(e);
 		}
 
-		public void OnLoad()
+		public void OnLoad(App app)
 		{
 			foreach(Entity e in this.entities)
 			{
-				e.Load();
+				e.Load(app);
 			}
 		}
 

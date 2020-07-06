@@ -2,15 +2,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ProjectRetrosic.GameApp.ECS.comps_e.comps
+namespace StereoFramework.GameApp.ECS.comps_e.comps
 {
-	class Comp_Sprite : IComponent, IDrawable
+	public class Comp_Sprite : IComponent, IDrawable
 	{
 		private Entity parent;
 		private String texture_path;

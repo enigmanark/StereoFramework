@@ -1,6 +1,6 @@
 ﻿using GameApp;
 
-namespace ProjectRetrosic.GameApp.ECS.comps_e
+namespace StereoFramework.GameApp.ECS.comps_e
 {
 	public interface IComponent
 	{

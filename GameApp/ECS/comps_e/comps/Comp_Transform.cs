@@ -1,13 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GameApp;
+using Microsoft.Xna.Framework;
 
-namespace ProjectRetrosic.GameApp.ECS.comps_e.comps
+namespace StereoFramework.GameApp.ECS.comps_e.comps
 {
-	class Comp_Transform : IComponent
+	public class Comp_Transform : IComponent
 	{
 		public Vector2 position;
 
@@ -25,7 +21,7 @@ namespace ProjectRetrosic.GameApp.ECS.comps_e.comps
 			this.position.Y = 0;
 		}
 
-		public void OnLoad()
+		public void OnLoad(App app)
 		{
 			
 		}
