@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StereoFramework.GameApp.ECS.comps_scene.comps
 {
-	class SceneCompSpriteRenderer : ISceneComponentRenderer
+	public class SceneCompSpriteRenderer : ISceneComponentRenderer
 	{
 		public void Draw(SpriteBatch batch, List<Entity> entities)
 		{
