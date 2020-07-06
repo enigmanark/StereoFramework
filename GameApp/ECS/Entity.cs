@@ -1,4 +1,5 @@
-﻿using ProjectRetrosic.GameApp.ECS.comps_e;
+﻿using GameApp;
+using ProjectRetrosic.GameApp.ECS.comps_e;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -15,6 +16,18 @@ namespace ProjectRetrosic.GameApp.ECS
 		public Entity()
 		{
 			
+		}
+
+		public IComponent GetComponent<T>()
+		{
+			foreach(IComponent c in this.components)
+			{
+				if(c is T)
+				{
+					return c;
+				}
+			}
+			return null;
 		}
 
 		public bool HasComponent<T>()
@@ -35,11 +48,11 @@ namespace ProjectRetrosic.GameApp.ECS
 			this.components.Add(c);
 		}
 
-		public void Load()
+		public void Load(App app)
 		{
 			foreach(IComponent c in this.components)
 			{
-				c.OnLoad();
+				c.OnLoad(app);
 			}
 		}
 

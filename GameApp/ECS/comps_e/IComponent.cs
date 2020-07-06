@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GameApp;
 
 namespace ProjectRetrosic.GameApp.ECS.comps_e
 {
 	public interface IComponent
 	{
-		void OnLoad();
+		void OnLoad(App app);
 		void OnUnload();
 	}
 }

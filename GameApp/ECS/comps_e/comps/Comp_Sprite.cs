@@ -1,6 +1,9 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using GameApp;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,19 +12,41 @@ namespace ProjectRetrosic.GameApp.ECS.comps_e.comps
 {
 	class Comp_Sprite : IComponent, IDrawable
 	{
-		public void Draw(SpriteBatch batch)
+		private Entity parent;
+		private String texture_path;
+		private Texture2D texture; 
+
+		public Comp_Sprite(Entity p, String path)
 		{
-			throw new NotImplementedException();
+			this.parent = p;
+			this.texture_path = path;
 		}
 
-		public void OnLoad()
+		public void Draw(SpriteBatch batch)
 		{
-			
+			Comp_Transform transform = this.parent.GetComponent<Comp_Transform>() as Comp_Transform;
+			batch.Draw(this.texture, transform.position, Color.White);
+		}
+
+		public void OnLoad(App app)
+		{
+			if (this.parent.HasComponent<Comp_Transform>())
+			{
+				this.texture = app.Content.Load<Texture2D>(this.texture_path);
+				Debug.WriteLine("ENGINE: Loaded texture " + this.texture_path + ".");
+			}
+			else
+			{
+				Debug.WriteLine("ENGINE ERROR: Entity does not have a transform with sprite " + this.texture_path + ".");
+				Debug.WriteLine("ENGINE: Closing...");
+				app.Exit();
+			}
 		}
 
 		public void OnUnload()
 		{
-			throw new NotImplementedException();
+			this.texture.Dispose();
+			Debug.WriteLine("ENGINE: Disposed of texture " + this.texture_path + ".");
 		}
 	}
 }
