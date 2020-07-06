@@ -10,7 +10,7 @@ namespace StereoFramework.GameApp.ECS
 
 		public Entity()
 		{
-			
+			this.components = new List<IComponent>();
 		}
 
 		public List<IComponent> GetComponents()

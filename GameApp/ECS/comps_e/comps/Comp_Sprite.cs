@@ -35,7 +35,7 @@ namespace StereoFramework.GameApp.ECS.comps_e.comps
 			{
 				Debug.WriteLine("ENGINE ERROR: Entity does not have a transform with sprite " + this.texture_path + ".");
 				Debug.WriteLine("ENGINE: Closing...");
-				app.Exit();
+				Environment.Exit(1);
 			}
 		}
 

@@ -59,11 +59,12 @@ namespace StereoFramework.GameApp.ECS
 
 		public void Draw(SpriteBatch spritebatch)
 		{
-			
+			spritebatch.Begin();	
 			foreach (ISceneComponentRenderer c in this.sceneRenderComps)
 			{
 				c.Draw(spritebatch, this.entities);
 			}
+			spritebatch.End();
 		}
 	}
 }

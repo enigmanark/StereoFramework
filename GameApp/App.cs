@@ -37,7 +37,7 @@ namespace GameApp
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            this.currentScene.OnLoad();
+            this.currentScene.OnLoad(this);
         }
 
 
