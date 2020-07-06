@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using StereoFramework.GameApp.ECS.comps_scene;
 using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace StereoFramework.GameApp.ECS
 {
@@ -15,6 +16,16 @@ namespace StereoFramework.GameApp.ECS
 			this.entities = new List<Entity>();
 			this.sceneComponents = new List<ISceneComponent>();
 			this.sceneRenderComps = new List<ISceneComponentRenderer>();
+		}
+
+		public void AddSceneComponentRenderer(ISceneComponentRenderer renderer)
+		{
+			this.sceneRenderComps.Add(renderer);
+		}
+
+		public void AddSceneComponent(ISceneComponent c)
+		{
+			this.sceneComponents.Add(c);
 		}
 
 		public void AddEntity(Entity e)
