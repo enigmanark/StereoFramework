@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using StereoFramework.GameApp.ECS.comps_scene;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Security.Policy;
 
 namespace StereoFramework.GameApp.ECS
@@ -33,21 +34,35 @@ namespace StereoFramework.GameApp.ECS
 			this.entities.Add(e);
 		}
 
-		public void OnLoad(App app)
+        public void OnInitialize(App app)
+        {
+            Debug.WriteLine("ENGINE: Initializing scene...");
+            foreach(Entity e in this.entities)
+            {
+                e.Initialize(app);
+            }
+            Debug.WriteLine("ENGINE: Scene has been initialized.");
+        }
+
+        public void OnLoad(App app)
 		{
+            Debug.WriteLine("ENGINE: Loading scene...");
 			foreach(Entity e in this.entities)
 			{
 				e.Load(app);
 			}
+            Debug.WriteLine("ENGINE: Scene has been loaded.");
 		}
 
 		public void OnUnload()
 		{
-			foreach(Entity e in this.entities)
+            Debug.WriteLine("ENGINE: Unloading scene...");
+            foreach (Entity e in this.entities)
 			{
 				e.Unload();
 			}
-		}
+            Debug.WriteLine("ENGINE: Scene has been unloaded.");
+        }
 
 		public void Update()
 		{

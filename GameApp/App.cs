@@ -19,6 +19,16 @@ namespace GameApp
             Content.RootDirectory = "Content";
         }
 
+        public void ChangeScene(Scene sc)
+        {
+            Debug.WriteLine("ENGINE: Changing scene...");
+            this.currentScene.OnUnload();
+            this.currentScene = sc;
+            this.currentScene.OnLoad(this);
+            this.currentScene.OnInitialize(this);
+            Debug.WriteLine("ENGINE: Scene changed.");
+        }
+
         protected void SetStartScene(Scene scene)
 		{
             Debug.WriteLine("ENGINE: Start scene set.");
@@ -28,6 +38,8 @@ namespace GameApp
         protected override void Initialize()
         {
             Debug.WriteLine("ENGINE: Initializing.");
+            this.currentScene.OnInitialize(this);
+            Debug.WriteLine("ENGINE: Initialization done.");
             base.Initialize();
         }
 
@@ -38,6 +50,7 @@ namespace GameApp
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
 
             this.currentScene.OnLoad(this);
+            Debug.WriteLine("ENGINE: Content loaded.");
         }
 
 
