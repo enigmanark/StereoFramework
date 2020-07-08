@@ -42,7 +42,6 @@ namespace StereoFramework.GameApp.ECS.systems.sys
                     {
                         this.scene.KillEntityWithId(e.GetId());
                         Debug.WriteLine("ENGINE: Killed entity offscreen with id " + e.GetId());
-                        Debug.WriteLine("ENGINE: Bounds are " + this.camera.GetVisibleArea());
                     }
                 }
             }

@@ -35,6 +35,11 @@ namespace StereoFramework.GameApp.ECS.components.comps
             }
         }
 
+        public void OnPostInitialization(App app)
+        {
+
+        }
+
         public void OnLoad(App app)
 		{
             this.texture = app.Content.Load<Texture2D>(this.texture_path);

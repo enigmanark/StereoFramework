@@ -119,8 +119,13 @@ namespace StereoFramework.GameApp.ECS
             foreach(Entity e in this.entityQueue)
             {
                 e.Initialize(this.app);
-                e.Load(this.app);
                 this.entities.Add(e);
+            }
+
+            foreach(Entity e in this.entityQueue)
+            {
+                e.PostInitialize(this.app);
+                e.Load(this.app);
                 Debug.WriteLine("ENGINE: Initialized and loaded an entity.");
             }
             this.entityQueue.Clear();
@@ -131,12 +136,12 @@ namespace StereoFramework.GameApp.ECS
             foreach(ISystem s in this.sysQueue)
             {
                 s.Initialize(this.app);
+                this.systems.Add(s);
             }
 
             foreach(ISystem s in this.sysQueue)
             {
                 s.PostInitialization(this.app);
-                this.systems.Add(s);
                 Debug.WriteLine("ENGINE: Initialized a system.");
             }
 

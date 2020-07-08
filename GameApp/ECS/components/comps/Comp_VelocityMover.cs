@@ -22,6 +22,11 @@ namespace StereoFramework.GameApp.ECS.components.comps
 
         }
 
+        public void OnPostInitialization(App app)
+        {
+
+        }
+
         public void OnLoad(App app)
         {
 

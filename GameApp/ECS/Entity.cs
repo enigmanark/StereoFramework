@@ -101,6 +101,14 @@ namespace StereoFramework.GameApp.ECS
             }
         }
 
+        public void PostInitialize(App app)
+        {
+            foreach(IComponent c in this.components)
+            {
+                c.OnPostInitialization(app);
+            }
+        }
+
         public void Load(App app)
 		{
 			foreach(IComponent c in this.components)

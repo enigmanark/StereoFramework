@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using GameApp;
 using Microsoft.Xna.Framework;
 using StereoFramework.GameApp.ECS.components;
