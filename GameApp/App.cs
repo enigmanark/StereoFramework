@@ -63,7 +63,6 @@ namespace GameApp
             this.currentScene.OnInitialize(this);
             Debug.WriteLine("ENGINE: Initialization done.");
             base.Initialize();
-
         }
 
         protected override void LoadContent()

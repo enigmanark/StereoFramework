@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Diagnostics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace StereoFramework.GameApp
@@ -55,15 +56,20 @@ namespace StereoFramework.GameApp
             this.position = newPosition;
         }
 
-        public void UpdateCamera(Viewport bounds)
+        public void UpdateCamera(Viewport viewport)
         {
-            this.bounds = bounds.Bounds;
+            this.bounds = viewport.Bounds;
             UpdateMatrix();
         }
 
         public Matrix GetTransformMatrix()
         {
             return this.transform;
+        }
+
+        public Rectangle GetWindowBounds()
+        {
+            return this.bounds;
         }
 
         public Rectangle GetVisibleArea()
