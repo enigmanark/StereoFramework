@@ -7,6 +7,9 @@ namespace GameApp
 {
     public class App : Game
     {
+        private string title;
+        private int windowWidth;
+        private int windowHeight;
         bool ranUpdateOnce = false;
         bool ranDrawOnce = false;
         GraphicsDeviceManager graphics;
@@ -17,11 +20,9 @@ namespace GameApp
         {
             this.graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            Window.Title = title;
-            this.graphics.IsFullScreen = false;
-            this.graphics.PreferredBackBufferWidth = width;
-            this.graphics.PreferredBackBufferHeight = height;
-            this.graphics.ApplyChanges();
+            this.title = title;
+            this.windowWidth = width;
+            this.windowHeight = height;
         }
 
         public App()
@@ -54,9 +55,15 @@ namespace GameApp
         protected override void Initialize()
         {
             Debug.WriteLine("ENGINE: Initializing.");
+            Window.Title = this.title;
+            this.graphics.IsFullScreen = false;
+            this.graphics.PreferredBackBufferWidth = this.windowWidth;
+            this.graphics.PreferredBackBufferHeight = this.windowHeight;
+            this.graphics.ApplyChanges();
             this.currentScene.OnInitialize(this);
             Debug.WriteLine("ENGINE: Initialization done.");
             base.Initialize();
+
         }
 
         protected override void LoadContent()
