@@ -46,8 +46,6 @@
     <Compile Include="GameApp\ECS\components\comps\Comp_Sprite.cs" />
     <Compile Include="GameApp\ECS\components\comps\Comp_Transform.cs" />
     <Compile Include="GameApp\ECS\components\IComponent.cs" />
-    <Compile Include="GameApp\ECS\components\IDrawable.cs" />
-    <Compile Include="GameApp\ECS\components\IProcessable.cs" />
     <Compile Include="GameApp\ECS\systems\sys\SysDefaultRenderer.cs" />
     <Compile Include="GameApp\ECS\systems\ISystem.cs" />
     <Compile Include="GameApp\ECS\systems\ISystem_Renderer.cs" />
@@ -62,6 +60,8 @@
     <Compile Include="GameApp\ECS\components\comps\Comp_VelocityMover.cs" />
     <Compile Include="GameApp\ECS\systems\sys\SysVelocityMover.cs" />
     <Compile Include="GameApp\SimpleCamera2D.cs" />
+    <Compile Include="GameApp\ECS\components\comps\Comp_DestroyOffscreen.cs" />
+    <Compile Include="GameApp\ECS\systems\sys\SysDestroyOffscreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

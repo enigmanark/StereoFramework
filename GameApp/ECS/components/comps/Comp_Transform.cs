@@ -5,17 +5,20 @@ namespace StereoFramework.GameApp.ECS.components.comps
 {
 	public class Comp_Transform : IComponent
 	{
+        private Entity parent;
 		public Vector2 position;
 
-		public Comp_Transform(float x, float y)
+		public Comp_Transform(Entity p, float x, float y)
 		{
+            this.SetParentEntity(p);
 			this.position = new Vector2();
 			this.position.X = x;
 			this.position.Y = y;
 		}
 
-		public Comp_Transform()
+		public Comp_Transform(Entity p)
 		{
+            this.SetParentEntity(p);
 			this.position = new Vector2();
 			this.position.X = 0;
 			this.position.Y = 0;
@@ -41,5 +44,10 @@ namespace StereoFramework.GameApp.ECS.components.comps
 		{
 			
 		}
-	}
+
+        public void SetParentEntity(Entity e)
+        {
+            this.parent = e;
+        }
+    }
 }

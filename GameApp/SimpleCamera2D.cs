@@ -65,5 +65,10 @@ namespace StereoFramework.GameApp
         {
             return this.transform;
         }
+
+        public Rectangle GetVisibleArea()
+        {
+            return this.visibleArea;
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace StereoFramework.GameApp.ECS
 {
 	public class Entity
 	{
+        private bool dying = false;
         private string id;
 		private List<IComponent> components;
         private List<string> tags;
@@ -17,6 +18,16 @@ namespace StereoFramework.GameApp.ECS
             this.tags = new List<string>();
 			this.components = new List<IComponent>();
 		}
+
+        public void Kill()
+        {
+            this.dying = true;
+        }
+
+        public bool IsDying()
+        {
+            return this.dying;
+        }
 
         public void AddTag(string tag)
         {

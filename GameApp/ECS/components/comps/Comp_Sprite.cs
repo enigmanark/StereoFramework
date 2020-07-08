@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace StereoFramework.GameApp.ECS.components.comps
 {
-	public class Comp_Sprite : IComponent, IDrawable
+	public class Comp_Sprite : IComponent
 	{
 		private Entity parent;
         private Comp_Transform transform;
@@ -15,8 +15,8 @@ namespace StereoFramework.GameApp.ECS.components.comps
 
 		public Comp_Sprite(Entity p, String path)
 		{
-			this.parent = p;
-			this.texture_path = path;
+            this.SetParentEntity(p);
+            this.texture_path = path;
 		}
 
 		public void Draw(SpriteBatch batch)
@@ -46,5 +46,10 @@ namespace StereoFramework.GameApp.ECS.components.comps
 			this.texture.Dispose();
 			Debug.WriteLine("ENGINE: Disposed of texture " + this.texture_path + ".");
 		}
-	}
+
+        public void SetParentEntity(Entity e)
+        {
+            this.parent = e;
+        }
+    }
 }

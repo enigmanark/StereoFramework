@@ -2,7 +2,7 @@
 using StereoFramework.GameApp.ECS.components;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using IDrawable = StereoFramework.GameApp.ECS.components.IDrawable;
+using StereoFramework.GameApp.ECS.components.comps;
 
 namespace StereoFramework.GameApp.ECS.systems.sys
 {
@@ -22,10 +22,10 @@ namespace StereoFramework.GameApp.ECS.systems.sys
 			{
 				foreach(IComponent c in e.GetComponents())
 				{
-					if(c is IDrawable)
+					if(c is Comp_Sprite)
 					{
-                        IDrawable drawable = c as IDrawable;
-						drawable.Draw(batch);
+                        Comp_Sprite sprite = c as Comp_Sprite;
+						sprite.Draw(batch);
 					}
 				}
 			}
