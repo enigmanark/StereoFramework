@@ -19,6 +19,11 @@ namespace StereoFramework.GameApp.ECS.systems.sys
 
         }
 
+        public void PostInitialization(App app)
+        {
+
+        }
+
         public void Process(List<Entity> entities, GameTime gameTime)
         {
             foreach(Entity e in entities)

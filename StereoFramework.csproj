@@ -62,6 +62,8 @@
     <Compile Include="GameApp\SimpleCamera2D.cs" />
     <Compile Include="GameApp\ECS\components\comps\Comp_DestroyOffscreen.cs" />
     <Compile Include="GameApp\ECS\systems\sys\SysDestroyOffscreen.cs" />
+    <Compile Include="GameApp\ECS\components\ISpawnable.cs" />
+    <Compile Include="GameApp\ECS\systems\sys\SysSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

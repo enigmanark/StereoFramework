@@ -10,6 +10,8 @@ namespace StereoFramework.GameApp.ECS
 	public class Scene
     {
         private App app;
+        private List<Entity> entityQueue;
+        private List<ISystem> sysQueue;
         private List<Entity> entities;
         private List<ISystem> systems;
 		private List<ISystem_Renderer> renderers;
@@ -22,6 +24,8 @@ namespace StereoFramework.GameApp.ECS
 			this.systems = new List<ISystem>();
             this.renderers = new List<ISystem_Renderer>();
             this.camera = new SimpleCamera2D();
+            this.entityQueue = new List<Entity>();
+            this.sysQueue = new List<ISystem>();
         }
 
         public SimpleCamera2D GetCamera()
@@ -99,47 +103,52 @@ namespace StereoFramework.GameApp.ECS
 			this.renderers.Add(renderer);
 		}
 
-		public void AddSystem(ISystem c)
+		public void AddSystem(ISystem s)
 		{
-			this.systems.Add(c);
+            this.sysQueue.Add(s);
 		}
 
 		public void AddEntity(Entity e)
 		{
-			this.entities.Add(e);
+            this.entityQueue.Add(e);
 		}
+
+
+        private void ProcessEntityQueue()
+        {
+            foreach(Entity e in this.entityQueue)
+            {
+                e.Initialize(this.app);
+                e.Load(this.app);
+                this.entities.Add(e);
+                Debug.WriteLine("ENGINE: Initialized and loaded an entity.");
+            }
+            this.entityQueue.Clear();
+        }
+
+        private void ProcessSystemQueue()
+        {
+            foreach(ISystem s in this.sysQueue)
+            {
+                s.Initialize(this.app);
+            }
+
+            foreach(ISystem s in this.sysQueue)
+            {
+                s.PostInitialization(this.app);
+                this.systems.Add(s);
+                Debug.WriteLine("ENGINE: Initialized a system.");
+            }
+
+            this.sysQueue.Clear();
+        }
 
         public void OnInitialize(App app)
         {
-            Debug.WriteLine("ENGINE: Initializing scene...");
-
-            Debug.WriteLine("ENGINE: Initializing entities...");
-            foreach(Entity e in this.entities)
-            {
-                e.Initialize(app);
-            }
-            Debug.WriteLine("ENGINE: Entities initialized.");
-            Debug.WriteLine("ENGINE: Initializing scene components...");
-            foreach(ISystem s in this.systems)
-            {
-                s.Initialize(app);
-            }
-            Debug.WriteLine("ENGINE: Scene Components initialized.");
             Debug.WriteLine("ENGINE: Initializing camera...");
             this.camera.Initialize(app.GraphicsDevice.Viewport);
             Debug.WriteLine("ENGINE: Camera initalized.");
-            Debug.WriteLine("ENGINE: Scene has been initialized.");
         }
-
-        public void OnLoad(App app)
-		{
-            Debug.WriteLine("ENGINE: Loading scene...");
-			foreach(Entity e in this.entities)
-			{
-				e.Load(app);
-			}
-            Debug.WriteLine("ENGINE: Scene has been loaded.");
-		}
 
 		public void OnUnload()
 		{
@@ -153,7 +162,9 @@ namespace StereoFramework.GameApp.ECS
 
 		public void Update(GameTime gameTime)
         {
-			foreach(ISystem s in this.systems)
+            this.ProcessEntityQueue();
+            this.ProcessSystemQueue();
+            foreach (ISystem s in this.systems)
 			{
                 if (s is ISystem_Handler)
                 {

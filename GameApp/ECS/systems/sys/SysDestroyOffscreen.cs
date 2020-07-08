@@ -18,6 +18,11 @@ namespace StereoFramework.GameApp.ECS.systems.sys
 
         public void Initialize(App app)
         {
+
+        }
+
+        public void PostInitialization(App app)
+        {
             this.scene = app.currentScene;
             this.camera = app.currentScene.GetCamera();
         }

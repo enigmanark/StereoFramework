@@ -29,6 +29,11 @@ namespace StereoFramework.GameApp.ECS.systems.sys
 
         }
 
+        public void PostInitialization(App app)
+        {
+
+        }
+
         public void Process(List<ISystem> comps, GameTime gameTime)
         {
             KeyboardState keyboard = Keyboard.GetState();

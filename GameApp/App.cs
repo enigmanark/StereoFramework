@@ -41,7 +41,6 @@ namespace GameApp
             Debug.WriteLine("ENGINE: Changing scene...");
             this.currentScene.OnUnload();
             this.currentScene = sc;
-            this.currentScene.OnLoad(this);
             this.currentScene.OnInitialize(this);
             Debug.WriteLine("ENGINE: Scene changed.");
         }
@@ -67,12 +66,7 @@ namespace GameApp
 
         protected override void LoadContent()
         {
-            Debug.WriteLine("ENGINE: Loading content.");
-            // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            this.currentScene.OnLoad(this);
-            Debug.WriteLine("ENGINE: Content loaded.");
         }
 
 
@@ -80,6 +74,7 @@ namespace GameApp
         {
             Debug.WriteLine("ENGINE: Unloading content.");
             this.currentScene.OnUnload();
+            Debug.WriteLine("ENGINE: Content unloaded.");
             Debug.WriteLine("ENGINE: Quitting...");
         }
 
