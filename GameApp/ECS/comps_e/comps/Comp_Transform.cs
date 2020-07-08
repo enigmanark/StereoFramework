@@ -21,7 +21,12 @@ namespace StereoFramework.GameApp.ECS.comps_e.comps
 			this.position.Y = 0;
 		}
 
-		public void OnLoad(App app)
+        public void OnInitialize(App app)
+        {
+
+        }
+
+        public void OnLoad(App app)
 		{
 			
 		}

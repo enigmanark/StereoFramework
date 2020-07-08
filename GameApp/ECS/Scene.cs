@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using StereoFramework.GameApp.ECS.comps_scene;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Security.Policy;
 
 namespace StereoFramework.GameApp.ECS
 {
@@ -72,12 +71,12 @@ namespace StereoFramework.GameApp.ECS
 			}
 		}
 
-		public void Draw(SpriteBatch spritebatch)
+		public void Draw(GraphicsDevice graphics, SpriteBatch spritebatch)
 		{
 			spritebatch.Begin();	
 			foreach (ISceneComponentRenderer c in this.sceneRenderComps)
 			{
-				c.Draw(spritebatch, this.entities);
+				c.Draw(graphics, spritebatch, this.entities);
 			}
 			spritebatch.End();
 		}

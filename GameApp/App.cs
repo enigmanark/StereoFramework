@@ -83,9 +83,8 @@ namespace GameApp
                 Debug.WriteLine("ENGINE: Starting main draw loop.");
                 this.ranDrawOnce = true;
             }
-            GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            this.currentScene.Draw(this.spriteBatch);
+            this.currentScene.Draw(this.graphics.GraphicsDevice, this.spriteBatch);
 
             base.Draw(gameTime);
         }

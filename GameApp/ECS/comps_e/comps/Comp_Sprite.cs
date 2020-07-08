@@ -24,19 +24,20 @@ namespace StereoFramework.GameApp.ECS.comps_e.comps
 			batch.Draw(this.texture, transform.position, Color.White);
 		}
 
-		public void OnLoad(App app)
+        public void OnInitialize(App app)
+        {
+            if(!this.parent.HasComponent<Comp_Transform>())
+            {
+                Debug.WriteLine("ENGINE ERROR: Entity does not have a transform with sprite " + this.texture_path + ".");
+                Debug.WriteLine("ENGINE: Closing...");
+                Environment.Exit(1);
+            }
+        }
+
+        public void OnLoad(App app)
 		{
-			if (this.parent.HasComponent<Comp_Transform>())
-			{
-				this.texture = app.Content.Load<Texture2D>(this.texture_path);
-				Debug.WriteLine("ENGINE: Loaded texture " + this.texture_path + ".");
-			}
-			else
-			{
-				Debug.WriteLine("ENGINE ERROR: Entity does not have a transform with sprite " + this.texture_path + ".");
-				Debug.WriteLine("ENGINE: Closing...");
-				Environment.Exit(1);
-			}
+            this.texture = app.Content.Load<Texture2D>(this.texture_path);
+            Debug.WriteLine("ENGINE: Loaded texture " + this.texture_path + ".");
 		}
 
 		public void OnUnload()
