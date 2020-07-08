@@ -18,7 +18,39 @@ namespace StereoFramework.GameApp.ECS
 			this.sceneRenderComps = new List<ISceneComponentRenderer>();
 		}
 
-		public void AddSceneComponentRenderer(ISceneComponentRenderer renderer)
+        public List<Entity> GetEntities()
+        {
+            return this.entities;
+        }
+
+        public List<Entity> GetAllEntitiesWithTag(string tag)
+        {
+            var list = new List<Entity>();
+            foreach(Entity e in this.entities)
+            {
+                if(e.HasTag(tag))
+                {
+                    list.Add(e);
+                }
+            }
+
+            return list;
+        }
+
+        public Entity GetFirstEntityWithTag(string tag)
+        {
+            foreach(Entity e in this.entities)
+            {
+                if(e.HasTag(tag))
+                {
+                    return e;
+                }
+            }
+
+            return null;
+        }
+
+        public void AddSceneComponentRenderer(ISceneComponentRenderer renderer)
 		{
 			this.sceneRenderComps.Add(renderer);
 		}

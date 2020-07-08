@@ -6,14 +6,38 @@ namespace StereoFramework.GameApp.ECS
 {
 	public class Entity
 	{
-		private List<IComponent> components; 
+		private List<IComponent> components;
+        private List<string> tags;
 
 		public Entity()
 		{
 			this.components = new List<IComponent>();
 		}
 
-		public List<IComponent> GetComponents()
+        public void AddTag(string tag)
+        {
+            this.tags.Add(tag);
+        }
+
+        public List<string> GetTags()
+        {
+            return this.tags;
+        }
+
+        public bool HasTag(string tag)
+        {
+            foreach(string t in this.tags)
+            {
+                if(t.Equals(tag))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public List<IComponent> GetComponents()
 		{
 			return this.components;
 		}

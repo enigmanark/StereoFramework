@@ -48,7 +48,7 @@
     <Compile Include="GameApp\ECS\comps_e\IComponent.cs" />
     <Compile Include="GameApp\ECS\comps_e\IDrawable.cs" />
     <Compile Include="GameApp\ECS\comps_e\IProcessable.cs" />
-    <Compile Include="GameApp\ECS\comps_scene\comps\SceneCompSpriteRenderer.cs" />
+    <Compile Include="GameApp\ECS\comps_scene\comps\SceneCompRenderer.cs" />
     <Compile Include="GameApp\ECS\comps_scene\ISceneComponent.cs" />
     <Compile Include="GameApp\ECS\comps_scene\ISceneComponentRenderer.cs" />
     <Compile Include="GameApp\ECS\Entity.cs" />
@@ -58,6 +58,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameApp\ECS\comps_scene\ISceneComponentInputHandler.cs" />
+    <Compile Include="GameApp\ECS\comps_scene\comps\SceneCompInputHandler.cs" />
+    <Compile Include="GameApp\ECS\comps_scene\IKeyboardListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

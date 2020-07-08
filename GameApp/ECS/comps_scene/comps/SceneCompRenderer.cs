@@ -6,7 +6,7 @@ using IDrawable = StereoFramework.GameApp.ECS.comps_e.IDrawable;
 
 namespace StereoFramework.GameApp.ECS.comps_scene.comps
 {
-	public class SceneCompSpriteRenderer : ISceneComponentRenderer
+	public class SceneComponentRenderer : ISceneComponentRenderer
 	{
 		public void Draw(GraphicsDevice graphics, SpriteBatch batch, List<Entity> entities)
 		{
