@@ -70,7 +70,7 @@ namespace GameApp
                 this.ranUpdateOnce = true;
 			}
 
-            this.currentScene.Update();
+            this.currentScene.Update(gameTime);
 
             base.Update(gameTime);
         }

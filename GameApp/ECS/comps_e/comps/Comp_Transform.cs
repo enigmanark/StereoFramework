@@ -21,6 +21,12 @@ namespace StereoFramework.GameApp.ECS.comps_e.comps
 			this.position.Y = 0;
 		}
 
+        public void SetPosition(float x, float y)
+        {
+            this.position.X = x;
+            this.position.Y = y;
+        }
+
         public void OnInitialize(App app)
         {
 

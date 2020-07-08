@@ -11,6 +11,7 @@ namespace StereoFramework.GameApp.ECS
 
 		public Entity()
 		{
+            this.tags = new List<string>();
 			this.components = new List<IComponent>();
 		}
 

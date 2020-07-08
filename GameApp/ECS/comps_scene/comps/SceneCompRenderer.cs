@@ -8,9 +8,16 @@ namespace StereoFramework.GameApp.ECS.comps_scene.comps
 {
 	public class SceneComponentRenderer : ISceneComponentRenderer
 	{
-		public void Draw(GraphicsDevice graphics, SpriteBatch batch, List<Entity> entities)
+        private Color clearColor;
+
+        public SceneComponentRenderer()
+        {
+            clearColor = Color.Black;
+        }
+
+        public void Draw(GraphicsDevice graphics, SpriteBatch batch, List<Entity> entities)
 		{
-            graphics.Clear(Color.Bisque);
+            graphics.Clear(this.clearColor);
             foreach (Entity e in entities)
 			{
 				foreach(IComponent c in e.GetComponents())
@@ -23,5 +30,10 @@ namespace StereoFramework.GameApp.ECS.comps_scene.comps
 				}
 			}
 		}
-	}
+
+        public void SetDefaultClearColor(Color c)
+        {
+            this.clearColor = c;
+        }
+    }
 }

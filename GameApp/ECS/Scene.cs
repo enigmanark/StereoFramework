@@ -1,4 +1,5 @@
 ﻿using GameApp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StereoFramework.GameApp.ECS.comps_scene;
 using System.Collections.Generic;
@@ -68,10 +69,19 @@ namespace StereoFramework.GameApp.ECS
         public void OnInitialize(App app)
         {
             Debug.WriteLine("ENGINE: Initializing scene...");
+
+            Debug.WriteLine("ENGINE: Initializing entities...");
             foreach(Entity e in this.entities)
             {
                 e.Initialize(app);
             }
+            Debug.WriteLine("ENGINE: Entities initialized.");
+            Debug.WriteLine("ENGINE: Initializing scene components...");
+            foreach(ISceneComponent c in this.sceneComponents)
+            {
+                c.Initialize(app);
+            }
+            Debug.WriteLine("ENGINE: Scene Components initialized.");
             Debug.WriteLine("ENGINE: Scene has been initialized.");
         }
 
@@ -95,18 +105,18 @@ namespace StereoFramework.GameApp.ECS
             Debug.WriteLine("ENGINE: Scene has been unloaded.");
         }
 
-		public void Update()
+		public void Update(GameTime gameTime)
         {
 			foreach(ISceneComponent c in this.sceneComponents)
 			{
                 if (c is ISceneComponentHandler)
                 {
                     ISceneComponentHandler h = c as ISceneComponentHandler;
-                    h.Process(this.sceneComponents);
+                    h.Process(this.sceneComponents, gameTime);
                 }
                 else
                 {
-                    c.Process(this.entities);
+                    c.Process(this.entities, gameTime);
                 }
 			}
 		}
