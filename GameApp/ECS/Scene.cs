@@ -96,10 +96,18 @@ namespace StereoFramework.GameApp.ECS
         }
 
 		public void Update()
-		{
+        {
 			foreach(ISceneComponent c in this.sceneComponents)
 			{
-				c.process(this.entities);
+                if (c is ISceneComponentHandler)
+                {
+                    ISceneComponentHandler h = c as ISceneComponentHandler;
+                    h.Process(this.sceneComponents);
+                }
+                else
+                {
+                    c.Process(this.entities);
+                }
 			}
 		}
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace StereoFramework.GameApp.ECS.comps_scene
 {
-    public interface ISceneComponentInputHandler
+    public interface ISceneComponentHandler
     {
         void Process(List<ISceneComponent> comps);
     }
