@@ -1,7 +1,7 @@
 ﻿using GameApp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using StereoFramework.GameApp.ECS.comps_scene;
+using StereoFramework.GameApp.ECS.systems;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -10,13 +10,13 @@ namespace StereoFramework.GameApp.ECS
 	public class Scene
 	{
 		private List<Entity> entities;
-		private List<ISceneComponent> sceneComponents;
-		private List<ISceneComponentRenderer> sceneRenderComps;
+		private List<ISystem> sceneComponents;
+		private List<ISystem_Renderer> sceneRenderComps;
 		public Scene()
 		{
 			this.entities = new List<Entity>();
-			this.sceneComponents = new List<ISceneComponent>();
-			this.sceneRenderComps = new List<ISceneComponentRenderer>();
+			this.sceneComponents = new List<ISystem>();
+			this.sceneRenderComps = new List<ISystem_Renderer>();
 		}
 
         public List<Entity> GetEntities()
@@ -51,12 +51,12 @@ namespace StereoFramework.GameApp.ECS
             return null;
         }
 
-        public void AddSceneComponentRenderer(ISceneComponentRenderer renderer)
+        public void AddSceneComponentRenderer(ISystem_Renderer renderer)
 		{
 			this.sceneRenderComps.Add(renderer);
 		}
 
-		public void AddSceneComponent(ISceneComponent c)
+		public void AddSceneComponent(ISystem c)
 		{
 			this.sceneComponents.Add(c);
 		}
@@ -77,9 +77,9 @@ namespace StereoFramework.GameApp.ECS
             }
             Debug.WriteLine("ENGINE: Entities initialized.");
             Debug.WriteLine("ENGINE: Initializing scene components...");
-            foreach(ISceneComponent c in this.sceneComponents)
+            foreach(ISystem s in this.sceneComponents)
             {
-                c.Initialize(app);
+                s.Initialize(app);
             }
             Debug.WriteLine("ENGINE: Scene Components initialized.");
             Debug.WriteLine("ENGINE: Scene has been initialized.");
@@ -107,16 +107,16 @@ namespace StereoFramework.GameApp.ECS
 
 		public void Update(GameTime gameTime)
         {
-			foreach(ISceneComponent c in this.sceneComponents)
+			foreach(ISystem s in this.sceneComponents)
 			{
-                if (c is ISceneComponentHandler)
+                if (s is ISystem_Handler)
                 {
-                    ISceneComponentHandler h = c as ISceneComponentHandler;
+                    ISystem_Handler h = s as ISystem_Handler;
                     h.Process(this.sceneComponents, gameTime);
                 }
                 else
                 {
-                    c.Process(this.entities, gameTime);
+                    s.Process(this.entities, gameTime);
                 }
 			}
 		}
@@ -124,7 +124,7 @@ namespace StereoFramework.GameApp.ECS
 		public void Draw(GraphicsDevice graphics, SpriteBatch spritebatch)
 		{
 			spritebatch.Begin();	
-			foreach (ISceneComponentRenderer c in this.sceneRenderComps)
+			foreach (ISystem_Renderer c in this.sceneRenderComps)
 			{
 				c.Draw(graphics, spritebatch, this.entities);
 			}

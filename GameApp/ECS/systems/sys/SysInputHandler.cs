@@ -3,23 +3,23 @@ using GameApp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace StereoFramework.GameApp.ECS.comps_scene.comps
+namespace StereoFramework.GameApp.ECS.systems.sys
 {
-    public class SceneComponentInputHandler : ISceneComponentHandler, ISceneComponent
+    public class SystemInputHandler : ISystem_Handler, ISystem
     {
-        private List<IKeyboardListener> keyboardSubscribers;
+        private List<ISystem_KeyboardListener> keyboardSubscribers;
 
-        public SceneComponentInputHandler()
+        public SystemInputHandler()
         {
-            this.keyboardSubscribers = new List<IKeyboardListener>();
+            this.keyboardSubscribers = new List<ISystem_KeyboardListener>();
         }
 
-        public void Unsubscribe(IKeyboardListener listener)
+        public void Unsubscribe(ISystem_KeyboardListener listener)
         {
             this.keyboardSubscribers.Remove(listener);
         }
 
-        public void Subscribe(IKeyboardListener listener)
+        public void Subscribe(ISystem_KeyboardListener listener)
         {
             this.keyboardSubscribers.Add(listener);
         }
@@ -29,10 +29,10 @@ namespace StereoFramework.GameApp.ECS.comps_scene.comps
 
         }
 
-        public void Process(List<ISceneComponent> comps, GameTime gameTime)
+        public void Process(List<ISystem> comps, GameTime gameTime)
         {
             KeyboardState keyboard = Keyboard.GetState();
-            foreach(IKeyboardListener l in this.keyboardSubscribers)
+            foreach(ISystem_KeyboardListener l in this.keyboardSubscribers)
             {
                 l.KeysPressed(keyboard.GetPressedKeys());
             }

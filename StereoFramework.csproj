@@ -43,23 +43,23 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameApp\ECS\comps_e\comps\Comp_Sprite.cs" />
-    <Compile Include="GameApp\ECS\comps_e\comps\Comp_Transform.cs" />
-    <Compile Include="GameApp\ECS\comps_e\IComponent.cs" />
-    <Compile Include="GameApp\ECS\comps_e\IDrawable.cs" />
-    <Compile Include="GameApp\ECS\comps_e\IProcessable.cs" />
-    <Compile Include="GameApp\ECS\comps_scene\comps\SceneCompRenderer.cs" />
-    <Compile Include="GameApp\ECS\comps_scene\ISceneComponent.cs" />
-    <Compile Include="GameApp\ECS\comps_scene\ISceneComponentRenderer.cs" />
+    <Compile Include="GameApp\ECS\components\comps\Comp_Sprite.cs" />
+    <Compile Include="GameApp\ECS\components\comps\Comp_Transform.cs" />
+    <Compile Include="GameApp\ECS\components\IComponent.cs" />
+    <Compile Include="GameApp\ECS\components\IDrawable.cs" />
+    <Compile Include="GameApp\ECS\components\IProcessable.cs" />
+    <Compile Include="GameApp\ECS\systems\sys\SysDefaultRenderer.cs" />
+    <Compile Include="GameApp\ECS\systems\ISystem.cs" />
+    <Compile Include="GameApp\ECS\systems\ISystem_Renderer.cs" />
     <Compile Include="GameApp\ECS\Entity.cs" />
     <Compile Include="GameApp\ECS\Scene.cs" />
     <Compile Include="GameApp\App.cs" />
     <Compile Include="GameApp\ResourceManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GameApp\ECS\comps_scene\ISceneComponentHandler.cs" />
-    <Compile Include="GameApp\ECS\comps_scene\comps\SceneCompInputHandler.cs" />
-    <Compile Include="GameApp\ECS\comps_scene\IKeyboardListener.cs" />
+    <Compile Include="GameApp\ECS\systems\ISystem_Handler.cs" />
+    <Compile Include="GameApp\ECS\systems\sys\SysInputHandler.cs" />
+    <Compile Include="GameApp\ECS\systems\ISystem_KeyboardListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

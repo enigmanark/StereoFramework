@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Input;
 
-namespace StereoFramework.GameApp.ECS.comps_scene
+namespace StereoFramework.GameApp.ECS.systems
 {
-    public interface IKeyboardListener
+    public interface ISystem_KeyboardListener
     {
         void KeysPressed(Keys[] keys);
     }

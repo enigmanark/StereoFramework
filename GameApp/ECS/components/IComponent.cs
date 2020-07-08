@@ -1,6 +1,6 @@
 ﻿using GameApp;
 
-namespace StereoFramework.GameApp.ECS.comps_e
+namespace StereoFramework.GameApp.ECS.components
 {
 	public interface IComponent
 	{

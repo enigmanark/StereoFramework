@@ -1,5 +1,5 @@
 ﻿using GameApp;
-using StereoFramework.GameApp.ECS.comps_e;
+using StereoFramework.GameApp.ECS.components;
 using System.Collections.Generic;
 
 namespace StereoFramework.GameApp.ECS

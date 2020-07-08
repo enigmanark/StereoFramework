@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
 
-namespace StereoFramework.GameApp.ECS.comps_e
+namespace StereoFramework.GameApp.ECS.components
 {
 	public interface IDrawable
 	{

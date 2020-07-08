@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
 
-namespace StereoFramework.GameApp.ECS.comps_e.comps
+namespace StereoFramework.GameApp.ECS.components.comps
 {
 	public class Comp_Sprite : IComponent, IDrawable
 	{

@@ -1,7 +1,7 @@
 ﻿using GameApp;
 using Microsoft.Xna.Framework;
 
-namespace StereoFramework.GameApp.ECS.comps_e.comps
+namespace StereoFramework.GameApp.ECS.components.comps
 {
 	public class Comp_Transform : IComponent
 	{

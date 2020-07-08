@@ -1,16 +1,16 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using StereoFramework.GameApp.ECS.comps_e;
+using StereoFramework.GameApp.ECS.components;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using IDrawable = StereoFramework.GameApp.ECS.comps_e.IDrawable;
+using IDrawable = StereoFramework.GameApp.ECS.components.IDrawable;
 
-namespace StereoFramework.GameApp.ECS.comps_scene.comps
+namespace StereoFramework.GameApp.ECS.systems.sys
 {
-	public class SceneComponentRenderer : ISceneComponentRenderer
+	public class SystemDefaultRenderer : ISystem_Renderer
 	{
         private Color clearColor;
 
-        public SceneComponentRenderer()
+        public SystemDefaultRenderer()
         {
             clearColor = Color.Black;
         }
