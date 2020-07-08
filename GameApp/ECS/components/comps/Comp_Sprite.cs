@@ -9,6 +9,7 @@ namespace StereoFramework.GameApp.ECS.components.comps
 	public class Comp_Sprite : IComponent, IDrawable
 	{
 		private Entity parent;
+        private Comp_Transform transform;
 		private String texture_path;
 		private Texture2D texture; 
 
@@ -20,13 +21,13 @@ namespace StereoFramework.GameApp.ECS.components.comps
 
 		public void Draw(SpriteBatch batch)
 		{
-			Comp_Transform transform = this.parent.GetComponent<Comp_Transform>() as Comp_Transform;
 			batch.Draw(this.texture, transform.position, Color.White);
 		}
 
         public void OnInitialize(App app)
         {
-            if(!this.parent.HasComponent<Comp_Transform>())
+            this.transform = this.parent.GetComponent<Comp_Transform>() as Comp_Transform;
+            if (this.transform == null)
             {
                 Debug.WriteLine("ENGINE ERROR: Entity does not have a transform with sprite " + this.texture_path + ".");
                 Debug.WriteLine("ENGINE: Closing...");

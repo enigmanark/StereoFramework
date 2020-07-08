@@ -1,11 +1,14 @@
 ﻿using GameApp;
 using StereoFramework.GameApp.ECS.components;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace StereoFramework.GameApp.ECS
 {
 	public class Entity
 	{
+        private string id;
 		private List<IComponent> components;
         private List<string> tags;
 
@@ -36,6 +39,11 @@ namespace StereoFramework.GameApp.ECS
             }
 
             return false;
+        }
+
+        public string GetId()
+        {
+            return this.id;
         }
 
         public List<IComponent> GetComponents()
@@ -75,6 +83,7 @@ namespace StereoFramework.GameApp.ECS
 
         public void Initialize(App app)
         {
+            this.id = this.GenerateUniqueId();
             foreach(IComponent c in this.components)
             {
                 c.OnInitialize(app);
@@ -97,5 +106,31 @@ namespace StereoFramework.GameApp.ECS
 			}
 		}
 
-	}
+        private string GenerateUniqueId()
+        {
+            string[] numbers = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+                                "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+
+            Random rand = new Random();
+            string d = "";
+            for(var i = 0; i < 25; i++)
+            {
+                string k;
+                var choose = rand.Next(0, 1+1);
+                if(choose == 0)
+                {
+                    k = numbers[rand.Next(0, 9+1)];
+                }
+                else
+                {
+                    k = letters[rand.Next(0, 25+1)];
+                }
+                d = d + k;
+            }
+
+            return d;
+        }
+
+    }
 }

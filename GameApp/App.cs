@@ -13,10 +13,26 @@ namespace GameApp
         SpriteBatch spriteBatch;
         public Scene currentScene;
 
+        public App(int width, int height, string title)
+        {
+            this.graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+            Window.Title = title;
+            this.graphics.IsFullScreen = false;
+            this.graphics.PreferredBackBufferWidth = width;
+            this.graphics.PreferredBackBufferHeight = height;
+            this.graphics.ApplyChanges();
+        }
+
         public App()
         {
             this.graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            Window.Title = "A Stereo Framework Game";
+            this.graphics.IsFullScreen = false;
+            this.graphics.PreferredBackBufferWidth = 1366;
+            this.graphics.PreferredBackBufferHeight = 768;
+            this.graphics.ApplyChanges();
         }
 
         public void ChangeScene(Scene sc)

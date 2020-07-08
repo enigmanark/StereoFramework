@@ -8,16 +8,26 @@ using System.Diagnostics;
 namespace StereoFramework.GameApp.ECS
 {
 	public class Scene
-	{
-		private List<Entity> entities;
+    {
+        private App app;
+        private List<Entity> entities;
 		private List<ISystem> sceneComponents;
 		private List<ISystem_Renderer> sceneRenderComps;
-		public Scene()
+        private SimpleCamera2D camera;
+
+        public Scene(App app)
 		{
+            this.app = app;
 			this.entities = new List<Entity>();
 			this.sceneComponents = new List<ISystem>();
-			this.sceneRenderComps = new List<ISystem_Renderer>();
-		}
+            this.sceneRenderComps = new List<ISystem_Renderer>();
+            this.camera = new SimpleCamera2D();
+        }
+
+        public SimpleCamera2D GetCamera()
+        {
+            return this.camera;
+        }
 
         public List<Entity> GetEntities()
         {
@@ -82,6 +92,9 @@ namespace StereoFramework.GameApp.ECS
                 s.Initialize(app);
             }
             Debug.WriteLine("ENGINE: Scene Components initialized.");
+            Debug.WriteLine("ENGINE: Initializing camera...");
+            this.camera.Initialize(app.GraphicsDevice.Viewport);
+            Debug.WriteLine("ENGINE: Camera initalized.");
             Debug.WriteLine("ENGINE: Scene has been initialized.");
         }
 
@@ -119,11 +132,13 @@ namespace StereoFramework.GameApp.ECS
                     s.Process(this.entities, gameTime);
                 }
 			}
-		}
+
+            this.camera.UpdateCamera(this.app.GraphicsDevice.Viewport);
+        }
 
 		public void Draw(GraphicsDevice graphics, SpriteBatch spritebatch)
 		{
-			spritebatch.Begin();	
+            spritebatch.Begin(transformMatrix: this.camera.GetTransformMatrix());	
 			foreach (ISystem_Renderer c in this.sceneRenderComps)
 			{
 				c.Draw(graphics, spritebatch, this.entities);
