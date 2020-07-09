@@ -64,6 +64,9 @@
     <Compile Include="GameApp\ECS\systems\sys\SysDestroyOffscreen.cs" />
     <Compile Include="GameApp\ECS\components\ISpawnable.cs" />
     <Compile Include="GameApp\ECS\systems\sys\SysSpawner.cs" />
+    <Compile Include="GameApp\EventBoard.cs" />
+    <Compile Include="GameApp\Events.cs" />
+    <Compile Include="GameApp\IEventListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using StereoFramework.GameApp;
 using StereoFramework.GameApp.ECS;
 using System.Diagnostics;
 
@@ -15,6 +16,7 @@ namespace GameApp
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public Scene currentScene;
+        private EventBoard eventBoard;
 
         public App(int width, int height, string title)
         {
@@ -23,6 +25,7 @@ namespace GameApp
             this.title = title;
             this.windowWidth = width;
             this.windowHeight = height;
+            this.eventBoard = new EventBoard();
         }
 
         public App()
@@ -34,34 +37,35 @@ namespace GameApp
             this.graphics.PreferredBackBufferWidth = 1366;
             this.graphics.PreferredBackBufferHeight = 768;
             this.graphics.ApplyChanges();
+            this.eventBoard = new EventBoard();
         }
 
         public void ChangeScene(Scene sc)
         {
-            Debug.WriteLine("ENGINE: Changing scene...");
+            this.eventBoard.Post(Event.ChangingScene);
             this.currentScene.OnUnload();
             this.currentScene = sc;
             this.currentScene.OnInitialize(this);
-            Debug.WriteLine("ENGINE: Scene changed.");
+            this.eventBoard.Post(Event.SceneChangeComplete);
         }
 
         protected void SetStartScene(Scene scene)
 		{
-            Debug.WriteLine("ENGINE: Start scene set.");
             this.currentScene = scene;
-		}
+            this.eventBoard.Post(Event.StartSceneSet);
+        }
 
         protected override void Initialize()
         {
-            Debug.WriteLine("ENGINE: Initializing.");
+            this.eventBoard.Post(Event.Initializing);
             Window.Title = this.title;
             this.graphics.IsFullScreen = false;
             this.graphics.PreferredBackBufferWidth = this.windowWidth;
             this.graphics.PreferredBackBufferHeight = this.windowHeight;
             this.graphics.ApplyChanges();
             this.currentScene.OnInitialize(this);
-            Debug.WriteLine("ENGINE: Initialization done.");
             base.Initialize();
+            this.eventBoard.Post(Event.InitializingComplete);
         }
 
         protected override void LoadContent()
@@ -72,10 +76,10 @@ namespace GameApp
 
         protected override void UnloadContent()
         {
-            Debug.WriteLine("ENGINE: Unloading content.");
+            this.eventBoard.Post(Event.UnloadingContent);
             this.currentScene.OnUnload();
-            Debug.WriteLine("ENGINE: Content unloaded.");
-            Debug.WriteLine("ENGINE: Quitting...");
+            this.eventBoard.Post(Event.UnloadingContentComplete);
+
         }
 
 
@@ -83,7 +87,7 @@ namespace GameApp
         {
             if(!this.ranUpdateOnce)
 			{
-                Debug.WriteLine("ENGINE: Starting main update loop.");
+                this.eventBoard.Post(Event.StartingUpdateLoop);
                 this.ranUpdateOnce = true;
 			}
 
@@ -97,13 +101,18 @@ namespace GameApp
         {
             if (!this.ranDrawOnce)
             {
-                Debug.WriteLine("ENGINE: Starting main draw loop.");
+                this.eventBoard.Post(Event.StartingDrawLoop);
                 this.ranDrawOnce = true;
             }
 
             this.currentScene.Draw(this.graphics.GraphicsDevice, this.spriteBatch);
 
             base.Draw(gameTime);
+        }
+
+        public EventBoard GetEventBoard()
+        {
+            return this.eventBoard;
         }
     }
 }

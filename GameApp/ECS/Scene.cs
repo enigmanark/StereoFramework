@@ -10,6 +10,7 @@ namespace StereoFramework.GameApp.ECS
 	public class Scene
     {
         private App app;
+        private EventBoard eventBoard;
         private List<Entity> entityQueue;
         private List<ISystem> sysQueue;
         private List<Entity> entities;
@@ -20,7 +21,8 @@ namespace StereoFramework.GameApp.ECS
         public Scene(App app)
 		{
             this.app = app;
-			this.entities = new List<Entity>();
+            this.eventBoard = app.GetEventBoard();
+            this.entities = new List<Entity>();
 			this.systems = new List<ISystem>();
             this.renderers = new List<ISystem_Renderer>();
             this.camera = new SimpleCamera2D();
@@ -126,7 +128,7 @@ namespace StereoFramework.GameApp.ECS
             {
                 e.PostInitialize(this.app);
                 e.Load(this.app);
-                Debug.WriteLine("ENGINE: Initialized and loaded an entity.");
+                
             }
             this.entityQueue.Clear();
         }
@@ -142,7 +144,7 @@ namespace StereoFramework.GameApp.ECS
             foreach(ISystem s in this.sysQueue)
             {
                 s.PostInitialization(this.app);
-                Debug.WriteLine("ENGINE: Initialized a system.");
+                this.eventBoard.Post(Event.SystemInitialized);
             }
 
             this.sysQueue.Clear();
@@ -150,19 +152,18 @@ namespace StereoFramework.GameApp.ECS
 
         public void OnInitialize(App app)
         {
-            Debug.WriteLine("ENGINE: Initializing camera...");
             this.camera.Initialize(app.GraphicsDevice.Viewport);
-            Debug.WriteLine("ENGINE: Camera initalized.");
+            this.eventBoard.Post(Event.CameraCreated);
         }
 
 		public void OnUnload()
 		{
-            Debug.WriteLine("ENGINE: Unloading scene...");
+            this.eventBoard.Post(Event.UnloadingScene);
             foreach (Entity e in this.entities)
 			{
 				e.Unload();
 			}
-            Debug.WriteLine("ENGINE: Scene has been unloaded.");
+            this.eventBoard.Post(Event.SceneUnloaded);
         }
 
 		public void Update(GameTime gameTime)
