@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StereoFramework.GameApp.ECS.systems;
+using StereoFramework.GameApp.ECS.systems.sys;
 using System.Collections.Generic;
 
 namespace StereoFramework.GameApp.ECS
@@ -17,16 +18,21 @@ namespace StereoFramework.GameApp.ECS
 		private List<ISystem_Renderer> renderers;
         private SimpleCamera2D camera;
 
-        public Scene(App app)
-		{
+        public Scene(App app, bool defaultRenderer)
+        {
             this.app = app;
             this.eventBoard = app.GetEventBoard();
             this.entities = new List<Entity>();
-			this.systems = new List<ISystem>();
+            this.systems = new List<ISystem>();
             this.renderers = new List<ISystem_Renderer>();
             this.camera = new SimpleCamera2D();
             this.entityQueue = new List<Entity>();
             this.sysQueue = new List<ISystem>();
+
+            if (defaultRenderer)
+            {
+                this.renderers.Add(new SystemDefaultRenderer());
+            }
         }
 
         public SimpleCamera2D GetCamera()
@@ -125,7 +131,6 @@ namespace StereoFramework.GameApp.ECS
 
             foreach(Entity e in this.entityQueue)
             {
-                e.PostInitialize(this.app);
                 e.Load(this.app);
                 
             }

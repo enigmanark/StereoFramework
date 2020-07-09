@@ -4,17 +4,23 @@ using Microsoft.Xna.Framework;
 
 namespace StereoFramework.GameApp.ECS.components.comps
 {
-    public class Comp_VelocityMover : IComponent
+    public class Comp_Bounds : IComponent
     {
         private Entity parent;
-        public Vector2 move_direction;
-        public float velocity;
+        public Rectangle bounds;
 
-        public Comp_VelocityMover(Entity p, float v)
+        public Comp_Bounds(Entity e, Rectangle rect)
         {
-            this.SetParentEntity(p);
-            move_direction = new Vector2();
-            velocity = v;
+            this.bounds = rect;
+        }
+
+        public Comp_Bounds(Entity e)
+        {
+            this.bounds = new Rectangle();
+            this.bounds.X = 0;
+            this.bounds.Y = 0;
+            this.bounds.Width = 32;
+            this.bounds.Height = 32;
         }
 
         public void OnInitialize(App app)

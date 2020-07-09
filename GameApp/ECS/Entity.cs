@@ -90,6 +90,7 @@ namespace StereoFramework.GameApp.ECS
 		public void AddComponent(IComponent c)
 		{
 			this.components.Add(c);
+            c.OnAdded();
 		}
 
         public void Initialize(App app)
@@ -101,29 +102,29 @@ namespace StereoFramework.GameApp.ECS
             }
         }
 
-        public void PostInitialize(App app)
-        {
-            foreach(IComponent c in this.components)
-            {
-                c.OnPostInitialization(app);
-            }
-        }
-
         public void Load(App app)
 		{
 			foreach(IComponent c in this.components)
 			{
-				c.OnLoad(app);
+                if (c is IHasContent)
+                {
+                    IHasContent h = c as IHasContent;
+                    h.OnLoad(app);
+                }
 			}
 		}
 
 		public void Unload()
 		{
-			foreach(IComponent c in this.components)
-			{
-				c.OnUnload();
-			}
-		}
+            foreach (IComponent c in this.components)
+            {
+                if (c is IHasContent)
+                {
+                    IHasContent h = c as IHasContent;
+                    h.OnUnload();
+                }
+            }
+        }
 
         private string GenerateUniqueId()
         {

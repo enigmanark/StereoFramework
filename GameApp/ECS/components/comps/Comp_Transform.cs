@@ -35,20 +35,11 @@ namespace StereoFramework.GameApp.ECS.components.comps
 
         }
 
-        public void OnPostInitialization(App app)
+        public void OnAdded()
         {
 
         }
 
-        public void OnLoad(App app)
-		{
-			
-		}
-
-		public void OnUnload()
-		{
-			
-		}
 
         public void SetParentEntity(Entity e)
         {

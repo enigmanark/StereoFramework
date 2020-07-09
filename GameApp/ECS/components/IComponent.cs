@@ -5,9 +5,7 @@ namespace StereoFramework.GameApp.ECS.components
 	public interface IComponent
 	{
         void SetParentEntity(Entity e);
+        void OnAdded();
         void OnInitialize(App app);
-        void OnPostInitialization(App app);
-		void OnLoad(App app);
-		void OnUnload();
 	}
 }

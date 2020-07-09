@@ -3,13 +3,15 @@ using GameApp;
 
 namespace StereoFramework.GameApp.ECS.components.comps
 {
-    public class Comp_DestroyOffscreen : IComponent
+    public class Comp_Click : IComponent
     {
         private Entity parent;
+        public Event theEvent;
 
-        public Comp_DestroyOffscreen(Entity p)
+        public Comp_Click(Entity e, Event ev)
         {
-            this.SetParentEntity(p);
+            this.SetParentEntity(e);
+            this.theEvent = ev;
         }
 
         public void OnInitialize(App app)

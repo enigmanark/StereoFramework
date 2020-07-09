@@ -11,6 +11,7 @@ namespace GameApp
         private string title;
         private int windowWidth;
         private int windowHeight;
+        private bool mouseCaptured;
         bool ranUpdateOnce = false;
         bool ranDrawOnce = false;
         GraphicsDeviceManager graphics;
@@ -19,13 +20,14 @@ namespace GameApp
         private EventBoard eventBoard;
         private InputHandler inputHandler;
 
-        public App(int width, int height, string title)
+        public App(int width, int height, string title, bool mouseVisible)
         {
             this.graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.title = title;
             this.windowWidth = width;
             this.windowHeight = height;
+            this.mouseCaptured = mouseVisible;
             this.eventBoard = new EventBoard();
             this.inputHandler = new InputHandler();
         }
@@ -63,6 +65,7 @@ namespace GameApp
             this.eventBoard.Post(Event.Initializing);
             Window.Title = this.title;
             this.graphics.IsFullScreen = false;
+            this.IsMouseVisible = this.mouseCaptured;
             this.graphics.PreferredBackBufferWidth = this.windowWidth;
             this.graphics.PreferredBackBufferHeight = this.windowHeight;
             this.graphics.ApplyChanges();
