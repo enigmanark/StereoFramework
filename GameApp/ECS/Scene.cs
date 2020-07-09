@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StereoFramework.GameApp.ECS.systems;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace StereoFramework.GameApp.ECS
 {

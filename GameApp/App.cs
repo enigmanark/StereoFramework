@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace GameApp
 {
-    public class App : Game
+    public class App : Game, IEventListener
     {
         private string title;
         private int windowWidth;
@@ -17,6 +17,7 @@ namespace GameApp
         SpriteBatch spriteBatch;
         public Scene currentScene;
         private EventBoard eventBoard;
+        private InputHandler inputHandler;
 
         public App(int width, int height, string title)
         {
@@ -26,6 +27,7 @@ namespace GameApp
             this.windowWidth = width;
             this.windowHeight = height;
             this.eventBoard = new EventBoard();
+            this.inputHandler = new InputHandler();
         }
 
         public App()
@@ -38,6 +40,7 @@ namespace GameApp
             this.graphics.PreferredBackBufferHeight = 768;
             this.graphics.ApplyChanges();
             this.eventBoard = new EventBoard();
+            this.inputHandler = new InputHandler();
         }
 
         public void ChangeScene(Scene sc)
@@ -90,7 +93,7 @@ namespace GameApp
                 this.eventBoard.Post(Event.StartingUpdateLoop);
                 this.ranUpdateOnce = true;
 			}
-
+            this.inputHandler.Process(gameTime);
             this.currentScene.Update(gameTime);
 
             base.Update(gameTime);
@@ -110,9 +113,22 @@ namespace GameApp
             base.Draw(gameTime);
         }
 
+        public InputHandler GetInputHandler()
+        {
+            return this.inputHandler;
+        }
+
         public EventBoard GetEventBoard()
         {
             return this.eventBoard;
+        }
+
+        public void Notify(Event e)
+        {
+            if(e == Event.Quit)
+            {
+                this.Exit();
+            }
         }
     }
 }

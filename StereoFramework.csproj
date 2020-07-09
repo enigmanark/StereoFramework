@@ -55,7 +55,6 @@
     <Compile Include="GameApp\ResourceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameApp\ECS\systems\ISystem_Handler.cs" />
-    <Compile Include="GameApp\ECS\systems\sys\SysInputHandler.cs" />
     <Compile Include="GameApp\ECS\systems\ISystem_KeyboardListener.cs" />
     <Compile Include="GameApp\ECS\components\comps\Comp_VelocityMover.cs" />
     <Compile Include="GameApp\ECS\systems\sys\SysVelocityMover.cs" />
@@ -67,6 +66,7 @@
     <Compile Include="GameApp\EventBoard.cs" />
     <Compile Include="GameApp\Events.cs" />
     <Compile Include="GameApp\IEventListener.cs" />
+    <Compile Include="GameApp\InputHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

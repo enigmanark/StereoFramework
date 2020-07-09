@@ -2,14 +2,16 @@
 using GameApp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using StereoFramework.GameApp.ECS;
+using StereoFramework.GameApp.ECS.systems;
 
-namespace StereoFramework.GameApp.ECS.systems.sys
+namespace StereoFramework.GameApp
 {
-    public class SystemInputHandler : ISystem_Handler, ISystem
+    public class InputHandler
     {
         private List<ISystem_KeyboardListener> keyboardSubscribers;
 
-        public SystemInputHandler()
+        public InputHandler()
         {
             this.keyboardSubscribers = new List<ISystem_KeyboardListener>();
         }
@@ -24,28 +26,14 @@ namespace StereoFramework.GameApp.ECS.systems.sys
             this.keyboardSubscribers.Add(listener);
         }
 
-        public void Initialize(App app)
-        {
 
-        }
-
-        public void PostInitialization(App app)
-        {
-
-        }
-
-        public void Process(List<ISystem> comps, GameTime gameTime)
+        public void Process(GameTime gameTime)
         {
             KeyboardState keyboard = Keyboard.GetState();
             foreach(ISystem_KeyboardListener l in this.keyboardSubscribers)
             {
                 l.KeysPressed(keyboard.GetPressedKeys());
             }
-        }
-
-        public void Process(List<Entity> entities, GameTime gameTime)
-        {
-
         }
     }
 }
