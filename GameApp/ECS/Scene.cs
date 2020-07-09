@@ -17,6 +17,7 @@ namespace StereoFramework.GameApp.ECS
         private List<ISystem> systems;
 		private List<ISystem_Renderer> renderers;
         private SimpleCamera2D camera;
+        private string id;
 
         public Scene(App app, bool defaultRenderer)
         {
@@ -28,6 +29,7 @@ namespace StereoFramework.GameApp.ECS
             this.camera = new SimpleCamera2D();
             this.entityQueue = new List<Entity>();
             this.sysQueue = new List<ISystem>();
+            this.id = Util.GenerateUniqueId();
 
             if (defaultRenderer)
             {
@@ -120,6 +122,10 @@ namespace StereoFramework.GameApp.ECS
             this.entityQueue.Add(e);
 		}
 
+        public string GetId()
+        {
+            return this.id;
+        }
 
         private void ProcessEntityQueue()
         {

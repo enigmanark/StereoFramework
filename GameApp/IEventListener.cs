@@ -1,8 +1,8 @@
 ﻿using System;
 namespace StereoFramework.GameApp
 {
-    public interface IEventListener
+    public interface IMessageListener
     {
-        void Notify(Event e);
+        void Notify(Message e);
     }
 }

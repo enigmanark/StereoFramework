@@ -15,12 +15,13 @@ namespace StereoFramework.GameApp
         UnloadingContent,
         UnloadingContentComplete,
         StartSceneSet,
-        ChangingScene,
+        ChangeScene,
         SceneChangeComplete,
         UnloadingScene,
         SceneUnloaded,
         CameraCreated,
         StartingUpdateLoop,
         StartingDrawLoop,
+        MouseDown,
     }
 }

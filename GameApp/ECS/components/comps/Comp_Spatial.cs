@@ -64,6 +64,11 @@ namespace StereoFramework.GameApp.ECS.components.comps
             }
         }
 
+        public Rectangle GetRectangle()
+        {
+            return this.bounds.bounds;
+        }
+
         public Vector2 GetPosition()
         {
             return this.transform.position;

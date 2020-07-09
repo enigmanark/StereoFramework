@@ -73,6 +73,10 @@
     <Compile Include="GameApp\exceptions\ComponentNotAttachedException.cs" />
     <Compile Include="GameApp\ECS\components\IHasContent.cs" />
     <Compile Include="GameApp\exceptions\AttemptToCallBeforeComponentAdded.cs" />
+    <Compile Include="GameApp\ECS\systems\sys\SysClickHandler.cs" />
+    <Compile Include="GameApp\SceneHandler.cs" />
+    <Compile Include="GameApp\Util.cs" />
+    <Compile Include="GameApp\Message.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

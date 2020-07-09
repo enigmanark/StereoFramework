@@ -9,10 +9,12 @@ namespace StereoFramework.GameApp
 {
     public class InputHandler
     {
+        private EventBoard eventBoard;
         private List<ISystem_KeyboardListener> keyboardSubscribers;
 
-        public InputHandler()
+        public InputHandler(App app)
         {
+            this.eventBoard = app.GetEventBoard();
             this.keyboardSubscribers = new List<ISystem_KeyboardListener>();
         }
 
@@ -33,6 +35,12 @@ namespace StereoFramework.GameApp
             foreach(ISystem_KeyboardListener l in this.keyboardSubscribers)
             {
                 l.KeysPressed(keyboard.GetPressedKeys());
+            }
+
+            MouseState mouse = Mouse.GetState();
+            if(mouse.LeftButton == ButtonState.Pressed)
+            {
+                this.eventBoard.Post(Event.MouseDown);
             }
         }
     }

@@ -16,7 +16,7 @@ namespace GameApp
         bool ranDrawOnce = false;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public Scene currentScene;
+        public SceneHandler sceneHandler;
         private EventBoard eventBoard;
         private InputHandler inputHandler;
 
@@ -29,7 +29,8 @@ namespace GameApp
             this.windowHeight = height;
             this.mouseCaptured = mouseVisible;
             this.eventBoard = new EventBoard();
-            this.inputHandler = new InputHandler();
+            this.inputHandler = new InputHandler(this);
+            this.sceneHandler = new SceneHandler(this);
         }
 
         public App()
@@ -42,7 +43,7 @@ namespace GameApp
             this.graphics.PreferredBackBufferHeight = 768;
             this.graphics.ApplyChanges();
             this.eventBoard = new EventBoard();
-            this.inputHandler = new InputHandler();
+            this.inputHandler = new InputHandler(this);
         }
 
         public void ChangeScene(Scene sc)

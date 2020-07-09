@@ -7,48 +7,48 @@ namespace StereoFramework.GameApp
 {
     public class EventBoard
     {
-        private List<IEventListener> subscribedSystems;
-        private List<Event> eventQueue;
+        private List<IMessageListener> subscribedSystems;
+        private List<Message> eventQueue;
 
         public EventBoard()
         {
-            this.subscribedSystems = new List<IEventListener>();
-            this.eventQueue = new List<Event>();
+            this.subscribedSystems = new List<IMessageListener>();
+            this.eventQueue = new List<Message>();
         }
 
         public void Update()
         {
             //Move the queued events to this list
-            List<Event> toProcess = new List<Event>();
-            foreach(Event e in this.eventQueue)
+            List<Message> toProcess = new List<Message>();
+            foreach(Message m in this.eventQueue)
             {
-                toProcess.Add(e);
+                toProcess.Add(m);
             }
             //Clear the queue
             eventQueue.Clear();
 
             //Process the events
-            foreach (Event e in this.eventQueue)
+            foreach (Message m in this.eventQueue)
             {
-                foreach(IEventListener l in this.subscribedSystems)
+                foreach(IMessageListener l in this.subscribedSystems)
                 {
-                    l.Notify(e);
+                    l.Notify(m);
                 }
             }
         }
 
-        public void Post(Event e)
+        public void Post(Message m)
         {
-            this.eventQueue.Add(e);
-            Debug.WriteLine("ENGINE: Event posted: " + e);
+            this.eventQueue.Add(m);
+            Debug.WriteLine("ENGINE: Event posted: " + m);
         }
 
-        public void Unsubscribe(IEventListener l)
+        public void Unsubscribe(IMessageListener l)
         {
             this.subscribedSystems.Remove(l);
         }
 
-        public void Subscribe(IEventListener l)
+        public void Subscribe(IMessageListener l)
         {
             this.subscribedSystems.Add(l);
         }
